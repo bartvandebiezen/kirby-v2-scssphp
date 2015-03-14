@@ -1,6 +1,6 @@
 # SCSSPHP Plugin for Kirby 2
 
-This is a preprocessor for SCSS files. Built using the [scssphp library](https://github.com/leafo/scssphp) by Leaf Corcoran. This Kirby v2 plugin will automatically process SCSS files.
+This is a preprocessor for SCSS files. Built using the [scssphp library](https://github.com/leafo/scssphp) by Leaf Corcoran. This Kirby v2 plugin will automatically process SCSS files when changed.
 
 1. Copy folder ‘scssphp’ inside ‘plugins’ to Kirby’s plugin folder.
 2. Copy file ‘scss.php’ inside ‘snippet’ to Kirby’s snippet folder.
