@@ -12,11 +12,11 @@ $compiledFile = $root . "/assets/css/style.css";
 // Compile only when needed.
 if (filemtime($sourceFile) > filemtime($compiledFile)) {
 
-	// Activate SCSSPHP plugin.
+	// Activate SCSSPHP library.
 	require "site/plugins/scssphp/scss.inc.php";
 	$scss = new scssc();
 
-	// Use compression provided by SCSSPHP plugin.
+	// Use compression provided by SCSSPHP library.
 	$scss->setFormatter("scss_formatter_compressed");
 
 	// Make relative @import paths in your SCSS files work.
