@@ -45,9 +45,15 @@ if (filemtime($sourceFile) > filemtime($compiledFile)) {
 	$buffer = str_replace(' }', '}', $buffer);
 	$buffer = str_replace(' {', '{', $buffer);
 	$buffer = str_replace(' )', ')', $buffer);
+	$buffer = str_replace(' (', '(', $buffer);
+	$buffer = str_replace(') ', ')', $buffer);
 	$buffer = str_replace('( ', '(', $buffer);
 	$buffer = str_replace(' ;', ';', $buffer);
 	$buffer = str_replace(' ,', ',', $buffer);
+
+	// Fix spacing in media queries.
+	$buffer = str_replace('and(', 'and (', $buffer);
+	$buffer = str_replace(')and', ') and', $buffer);
 
 	// Remove last semi-colon within a CSS rule.
 	$buffer = str_replace(';}', '}', $buffer);
