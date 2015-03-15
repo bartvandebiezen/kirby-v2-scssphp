@@ -45,8 +45,6 @@ if (filemtime($sourceFile) > filemtime($compiledFile)) {
 	$buffer = str_replace(' }', '}', $buffer);
 	$buffer = str_replace(' {', '{', $buffer);
 	$buffer = str_replace(' )', ')', $buffer);
-	$buffer = str_replace(' (', '(', $buffer);
-	$buffer = str_replace(') ', ')', $buffer);
 	$buffer = str_replace('( ', '(', $buffer);
 	$buffer = str_replace(' ;', ';', $buffer);
 	$buffer = str_replace(' ,', ',', $buffer);
