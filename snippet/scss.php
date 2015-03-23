@@ -14,20 +14,20 @@ if (filemtime($sourceFile) > filemtime($compiledFile)) {
 
 	// Activate library.
 	require "site/plugins/scssphp/scss.inc.php";
-	$scss = new scssc();
+	$parser = new scssc();
 
 	// Use compression provided by library.
-	$scss->setFormatter("scss_formatter_compressed");
+	$parser->setFormatter("scss_formatter_compressed");
 
 	// Make relative @import paths in your SCSS files work.
 	$importPath = $root . "/assets/scss";
-	$scss->addImportPath($importPath);
+	$parser->addImportPath($importPath);
 
 	// Place SCSS file in buffer.
 	$buffer = file_get_contents($sourceFile);
 
 	// Compile content in buffer.
-	$buffer = $scss->compile($buffer);
+	$buffer = $parser->compile($buffer);
 
 	// Remove all CSS comments.
 	$buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
