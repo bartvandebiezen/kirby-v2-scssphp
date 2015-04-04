@@ -9,8 +9,8 @@ $sourceFile = $root . "/assets/scss/style.scss";
 // Your final CSS file.
 $compiledFile = $root . "/assets/css/style.css";
 
-// Compile only when needed.
-if (filemtime($sourceFile) > filemtime($compiledFile)) {
+// Compile when needed.
+if ( !file_exists($compiledFile) or filemtime($sourceFile) > filemtime($compiledFile) ) {
 
 	// Activate library.
 	require "site/plugins/scssphp/scss.inc.php";
