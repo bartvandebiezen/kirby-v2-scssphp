@@ -1,7 +1,7 @@
 <?php
 
 // Using 'realpath' seems to work best in different situations.
-$root = realpath(__DIR__ . "/../..");
+$root = realpath(__DIR__ . '/../..');
 
 // For checking and creating SCSS file for the current template.
 $templateName = $page->template();
@@ -38,34 +38,9 @@ if ( !file_exists($compiledFile) or filemtime($sourceFile) > filemtime($compiled
 	// Compile content in buffer.
 	$buffer = $parser->compile($buffer);
 
-	// Remove all CSS comments.
-	$buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
-
-	// Remove lines and tabs.
-	$buffer = str_replace(array("\r\n", "\r", "\n", "\t"), '', $buffer);
-
-	// Remove unnecessary spaces.
-	$buffer = preg_replace('!\s+!', ' ', $buffer);
-	$buffer = str_replace(': ', ':', $buffer);
-	$buffer = str_replace('} ', '}', $buffer);
-	$buffer = str_replace('{ ', '{', $buffer);
-	$buffer = str_replace('; ', ';', $buffer);
-	$buffer = str_replace(', ', ',', $buffer);
-	$buffer = str_replace(' }', '}', $buffer);
-	$buffer = str_replace(' {', '{', $buffer);
-	$buffer = str_replace(' )', ')', $buffer);
-	$buffer = str_replace(' (', '(', $buffer);
-	$buffer = str_replace(') ', ')', $buffer);
-	$buffer = str_replace('( ', '(', $buffer);
-	$buffer = str_replace(' ;', ';', $buffer);
-	$buffer = str_replace(' ,', ',', $buffer);
-
-	// Fix spacing in media queries.
-	$buffer = str_replace('and(', 'and (', $buffer);
-	$buffer = str_replace(')and', ') and', $buffer);
-
-	// Remove last semi-colon within a CSS rule.
-	$buffer = str_replace(';}', '}', $buffer);
+	// Minify the CSS even further.
+	require 'site/plugins/scssphp/minify.php';
+	$buffer = minifyCSS($buffer);
 
 	// Update CSS file.
 	file_put_contents($compiledFile, $buffer);

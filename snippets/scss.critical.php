@@ -39,34 +39,9 @@ if ( !file_exists($compiledFile) or filemtime($sourceFile) > filemtime($compiled
 	// Compile content in buffer.
 	$buffer = $parser->compile($buffer);
 
-	// Remove all CSS comments.
-	$buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
-
-	// Remove lines and tabs.
-	$buffer = str_replace(array("\r\n", "\r", "\n", "\t"), '', $buffer);
-
-	// Remove unnecessary spaces.
-	$buffer = preg_replace('!\s+!', ' ', $buffer);
-	$buffer = str_replace(': ', ':', $buffer);
-	$buffer = str_replace('} ', '}', $buffer);
-	$buffer = str_replace('{ ', '{', $buffer);
-	$buffer = str_replace('; ', ';', $buffer);
-	$buffer = str_replace(', ', ',', $buffer);
-	$buffer = str_replace(' }', '}', $buffer);
-	$buffer = str_replace(' {', '{', $buffer);
-	$buffer = str_replace(' )', ')', $buffer);
-	$buffer = str_replace(' (', '(', $buffer);
-	$buffer = str_replace(') ', ')', $buffer);
-	$buffer = str_replace('( ', '(', $buffer);
-	$buffer = str_replace(' ;', ';', $buffer);
-	$buffer = str_replace(' ,', ',', $buffer);
-
-	// Fix spacing in media queries.
-	$buffer = str_replace('and(', 'and (', $buffer);
-	$buffer = str_replace(')and', ') and', $buffer);
-
-	// Remove last semi-colon within a CSS rule.
-	$buffer = str_replace(';}', '}', $buffer);
+	// Minify the CSS even further.
+	require 'site/plugins/scssphp/minify.php';
+	$buffer = minifyCSS($buffer);
 
 	// Make relative URLs absolute
 	// CRED: <http://stackoverflow.com/questions/9798378/preg-replace-regex-to-match-relative-url-paths-in-css-files>
