@@ -3,11 +3,20 @@
 // Using 'realpath' seems to work best in different situations.
 $root = realpath(__DIR__ . "/../..");
 
-// Your main SCSS file.
-$sourceFile = $root . "/assets/scss/style.scss";
+// For checking and creating SCSS file for the current template.
+$templateName = $page->template();
+$sourceTemplateFile = $root . '/assets/scss/' . $templateName . '.scss';
+$compiledTemplateFile = $root . '/assets/css/' . $templateName . '.css';
 
-// Your final CSS file.
-$compiledFile = $root . "/assets/css/style.css";
+if ( $templateName != 'default' and file_exists($sourceTemplateFile) ) {
+	$sourceFile = $sourceTemplateFile;
+	$compiledFile = $compiledTemplateFile;
+	$compiledFileKirbyPath = 'assets/css/' . $templateName . '.css';
+} else {
+	$sourceFile = $root . '/assets/scss/default.scss';
+	$compiledFile = $root . '/assets/css/default.css';
+	$compiledFileKirbyPath = 'assets/css/default.css';
+}
 
 // Compile when needed.
 if ( !file_exists($compiledFile) or filemtime($sourceFile) > filemtime($compiledFile) ) {
@@ -58,9 +67,9 @@ if ( !file_exists($compiledFile) or filemtime($sourceFile) > filemtime($compiled
 	// Remove last semi-colon within a CSS rule.
 	$buffer = str_replace(';}', '}', $buffer);
 
-	// Update your CSS file.
+	// Update CSS file.
 	file_put_contents($compiledFile, $buffer);
 }
 
 ?>
-<link rel="stylesheet" href="<?php echo url('assets/css/style.css') ?>">
+<link rel="stylesheet" href="<?php echo url($compiledFileKirbyPath) ?>">

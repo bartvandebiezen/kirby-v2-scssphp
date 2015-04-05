@@ -8,10 +8,14 @@ This is a preprocessor for SCSS files. Built using the [scssphp library](https:/
 2. Copy file ‘scss.php’ inside ‘snippets’ to Kirby’s snippets folder.
 3. Call the SCSS snippet with <?php snippet('scss') ?> in your HTML head.
 4. Create a folder ‘scss’ inside Kirby’s assets folder.
-5. Create a file ‘style.scss’ and place it inside ‘assets/scss’.
+5. Create a file ‘default.scss’ and place it inside ‘assets/scss’.
 6. Make sure the folder ‘assets/css’ exists on your server.
 
-Note: after installing this plugin, 'assets/css/style.css' will be overwritten automatically. Make sure you backup your original style.css file.
+## Using SCSS plugin
+
+After installing this plugin, 'assets/css/default.css' will be overwritten automatically. Make sure you backup your original CSS.
+
+It is possible to create different SCSSs for each Kirby template. Just use the name of your template file for the SCSS file (e.g. 'article.scss' for 'templates/article.php'), and place it in 'assets/scss'. If no SCSS file for a template can be found, 'default.scss' will be used.
 
 ## Critical SCSS (a.k.a. above the fold)
 
@@ -33,9 +37,9 @@ This plugin does not (yet) detect which CSS should be placed in your critical CS
 
 The critical CSS will be updated after you update 'default.critical.scss' or upload it to another server. Updating the critical CSS after uploaded to another server is necessary because the absolute URLs in your critical CSS need to be updated.
 
-It is possible to create different critical SCSSs for each Kirby template. Just use the name of your template file for the critical SCSS file (e.g. 'article.critical.scss' for 'templates/article.php'), and place it in 'assets/scss'. If no critical SCSS file can be found for a template, 'default.critical.scss' will be used.
+It is possible to create different critical SCSSs for each Kirby template. Just use the name of your template file for the critical SCSS file (e.g. 'article.critical.scss' for 'templates/article.php'), and place it in 'assets/scss'. If no critical SCSS file for a template can be found, 'default.critical.scss' will be used.
 
-My advice is not to remove any SCSS from your main SCSS file 'style.scss'.
+My advice is not to remove any SCSS from your main SCSS file 'default.scss'.
 
 ## Compatibility
 
