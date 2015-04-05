@@ -22,14 +22,14 @@ if ( $templateName != 'default' and file_exists($sourceTemplateFile) ) {
 if ( !file_exists($compiledFile) or filemtime($sourceFile) > filemtime($compiledFile) ) {
 
 	// Activate library.
-	require "site/plugins/scssphp/scss.inc.php";
+	require_once $root . '/site/plugins/scssphp/scss.inc.php';
 	$parser = new scssc();
 
-	// Use compression provided by library.
-	$parser->setFormatter("scss_formatter_compressed");
+	// Setting compression provided by library.
+	$parser->setFormatter('scss_formatter_compressed');
 
-	// Make relative @import paths in your SCSS files work.
-	$importPath = $root . "/assets/scss";
+	// Setting relative @import paths.
+	$importPath = $root . '/assets/scss';
 	$parser->addImportPath($importPath);
 
 	// Place SCSS file in buffer.
@@ -39,7 +39,7 @@ if ( !file_exists($compiledFile) or filemtime($sourceFile) > filemtime($compiled
 	$buffer = $parser->compile($buffer);
 
 	// Minify the CSS even further.
-	require 'site/plugins/scssphp/minify.php';
+	require_once $root . '/site/plugins/scssphp/minify.php';
 	$buffer = minifyCSS($buffer);
 
 	// Update CSS file.
