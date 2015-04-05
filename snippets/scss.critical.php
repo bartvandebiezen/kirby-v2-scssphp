@@ -6,21 +6,22 @@ $root = realpath(__DIR__ . '/../..');
 // For checking and creating absolute paths in your inlined CSS.
 $siteUrl = $site->url();
 
-// For checking and creating critical SCSS file for the current template.
-$templateName = $page->template();
-$sourceTemplateFile = $root . '/assets/scss/' . $templateName . '.critical.scss';
-$compiledTemplateFile = $root . '/assets/css/' . $templateName . '.critical.css';
+// For checking non critical SCSS file and checking and creating critical SCSS file for the current template.
+$templateName       = $page->template();
+$templateSourceFile = $root . '/assets/scss/' . $templateName . '.critical.scss';
 
-if ( $templateName != 'default' and file_exists($sourceTemplateFile) ) {
-	$sourceFile = $sourceTemplateFile;
-	$compiledFile = $compiledTemplateFile;
+if ( $templateName != 'default' and file_exists($templateSourceFile) ) {
+	$sourceFile            = $templateSourceFile;
+	$compiledFile          = $root . '/assets/css/' . $templateName . '.critical.css';
+	$nonCriticalSourceFile = $root . '/assets/scss/' . $templateName . '.scss';
 } else {
-	$sourceFile = $root . '/assets/scss/default.critical.scss';
-	$compiledFile = $root . '/assets/css/default.critical.css';
+	$sourceFile            = $root . '/assets/scss/default.critical.scss';
+	$compiledFile          = $root . '/assets/css/default.critical.css';
+	$nonCriticalSourceFile = $root . '/assets/scss/default.scss';
 }
 
-// Compile when: (1) the CSS file doesn't exist; (2) the source file is newer; (3) Absolute URLs from the current server cannot be found.
-if ( !file_exists($compiledFile) or filemtime($sourceFile) > filemtime($compiledFile) or !strpos(file_get_contents($compiledFile), $siteUrl) ) {
+// Compile when: (1) the CSS file doesn't exist; (2) the non critical source file is updated ;(3) the critical source file is updated; (4) Absolute URLs from the current server cannot be found.
+if ( !file_exists($compiledFile) or filemtime($nonCriticalSourceFile) > filemtime($compiledFile) or filemtime($sourceFile) > filemtime($compiledFile) or !strpos(file_get_contents($compiledFile), $siteUrl) ) {
 
 	// Activate library.
 	require_once $root . '/site/plugins/scssphp/scss.inc.php';
