@@ -11,7 +11,7 @@ $templateName = $page->template();
 $sourceTemplateFile = $root . '/assets/scss/' . $templateName . '.critical.scss';
 $compiledTemplateFile = $root . '/assets/css/' . $templateName . '.critical.css';
 
-if ( file_exists($sourceTemplateFile) ) {
+if ( $templateName != 'default' and file_exists($sourceTemplateFile) ) {
 	$sourceFile = $sourceTemplateFile;
 	$compiledFile = $compiledTemplateFile;
 } else {
