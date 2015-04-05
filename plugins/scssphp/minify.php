@@ -4,11 +4,14 @@ function minifyCSS($buffer) {
 	// Remove all CSS comments.
 	$buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
 
+	// Remove leading zeros
+	$buffer = preg_replace('/(?<=[^1-9])(0+)(?=\.)/', '', $buffer);
+
 	// Remove lines and tabs.
-	$buffer = str_replace(array("\r\n", "\r", "\n", "\t"), '', $buffer);
+	$buffer = preg_replace('/\n|\t|\r/', '', $buffer);
 
 	// Remove unnecessary spaces.
-	$buffer = preg_replace('!\s+!', ' ', $buffer);
+	$buffer = preg_replace('/\s{2,}/', ' ', $buffer);
 	$buffer = str_replace(': ', ':', $buffer);
 	$buffer = str_replace('} ', '}', $buffer);
 	$buffer = str_replace('{ ', '{', $buffer);
