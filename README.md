@@ -33,7 +33,7 @@ If you would like to improve the performance of your website, you can use the 's
 
 Everything in 'default.critical.scss' will be compiled and placed in your HTML head. All relative URLs in your critical SCSS will be automatically converted to the correct absolute URLs in your critical CSS.
 
-This plugin does not (yet) detect which CSS should be placed in your critical CSS. Therefor you need to manually place or import SCSS that will affect everything that has a large change to be directly visible 'above the fold' when loaded. Do not forget to include your SCSS utilities (e.g. mixins) and settings (i.e. global variables) in your critical SCSS file.
+This plugin does not (yet) detect which CSS should be placed in your critical CSS. Therefor you need to manually place or import SCSS that will affect everything that has a large chance to be directly visible 'above the fold' when loaded. Do not forget to include your SCSS utilities (e.g. mixins) and settings (i.e. global variables) in your critical SCSS file.
 
 The critical CSS will be updated after you update 'default.critical.scss' or upload it to another server. Updating the critical CSS after uploaded to another server is necessary because the absolute URLs in your critical CSS need to be updated.
 
