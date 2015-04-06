@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * SCSS Snippet
+ * @author    Bart van de Biezen <bart@bartvandebiezen.com>
+ * @link      https://github.com/bartvandebiezen/kirby-v2-scssphp
+ * @return    CSS and HTML
+ * @version   0.9
+ */
+
 // Using 'realpath' seems to work best in different situations.
 $root = realpath(__DIR__ . '/../..');
 

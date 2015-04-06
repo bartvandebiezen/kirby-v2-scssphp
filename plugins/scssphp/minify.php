@@ -1,4 +1,13 @@
 <?php
+
+/**
+ * Minify CSS Function
+ * @author    Bart van de Biezen <bart@bartvandebiezen.com>
+ * @link      https://github.com/bartvandebiezen/kirby-v2-scssphp
+ * @return    CSS
+ * @version   0.5
+ */
+
 function minifyCSS($buffer) {
 
 	// Remove all CSS comments.
