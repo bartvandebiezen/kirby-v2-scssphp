@@ -5,29 +5,31 @@
  * @author    Bart van de Biezen <bart@bartvandebiezen.com>
  * @link      https://github.com/bartvandebiezen/kirby-v2-scssphp
  * @return    CSS and HTML
- * @version   0.9
+ * @version   0.9.1
  */
 
-// Using 'realpath' seems to work best in different situations.
+// Using realpath seems to work best in different situations.
 $root = realpath(__DIR__ . '/../..');
 
-// For checking and creating SCSS file for the current template.
-$templateName = $page->template();
-$sourceTemplateFile = $root . '/assets/scss/' . $templateName . '.scss';
-$compiledTemplateFile = $root . '/assets/css/' . $templateName . '.css';
+// Set file paths. Used for checking and updating CSS file for current template.
+$template     = $page->template();
+$SCSS         = $root . '/assets/scss/' . $template . '.scss';
+$CSS          = $root . '/assets/css/'  . $template . '.css';
+$CSSKirbyPath = 'assets/css/' . $template . '.css';
 
-if ( $templateName != 'default' and file_exists($sourceTemplateFile) ) {
-	$sourceFile = $sourceTemplateFile;
-	$compiledFile = $compiledTemplateFile;
-	$compiledFileKirbyPath = 'assets/css/' . $templateName . '.css';
-} else {
-	$sourceFile = $root . '/assets/scss/default.scss';
-	$compiledFile = $root . '/assets/css/default.css';
-	$compiledFileKirbyPath = 'assets/css/default.css';
+// Set default SCSS if there is no SCSS for current template. If template is default, skip check.
+if ($template = 'default' or !file_exists($SCSS)) {
+	$SCSS         = $root . '/assets/scss/default.scss';
+	$CSS          = $root . '/assets/css/default.css';
+	$CSSKirbyPath = 'assets/css/default.css';
 }
 
-// Compile when needed.
-if ( !file_exists($compiledFile) or filemtime($sourceFile) > filemtime($compiledFile) ) {
+// Get file modification times. Used for checking if update is required and as version number for caching.
+$SCSSFileTime = filemtime($SCSS);
+$CSSFileTime = filemtime($CSS);
+
+// Update CSS when needed.
+if (!file_exists($CSS) or $SCSSFileTime > $CSSFileTime ) {
 
 	// Activate library.
 	require_once $root . '/site/plugins/scssphp/scss.inc.php';
@@ -41,7 +43,7 @@ if ( !file_exists($compiledFile) or filemtime($sourceFile) > filemtime($compiled
 	$parser->addImportPath($importPath);
 
 	// Place SCSS file in buffer.
-	$buffer = file_get_contents($sourceFile);
+	$buffer = file_get_contents($SCSS);
 
 	// Compile content in buffer.
 	$buffer = $parser->compile($buffer);
@@ -51,8 +53,8 @@ if ( !file_exists($compiledFile) or filemtime($sourceFile) > filemtime($compiled
 	$buffer = minifyCSS($buffer);
 
 	// Update CSS file.
-	file_put_contents($compiledFile, $buffer);
+	file_put_contents($CSS, $buffer);
 }
 
 ?>
-<link rel="stylesheet" href="<?php echo url($compiledFileKirbyPath) ?>">
+<link rel="stylesheet" property="stylesheet" href="<?php echo url($CSSKirbyPath) ?>?version=<?php echo $CSSFileTime ?>">
