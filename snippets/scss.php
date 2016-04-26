@@ -5,8 +5,10 @@
  * @author    Bart van de Biezen <bart@bartvandebiezen.com>
  * @link      https://github.com/bartvandebiezen/kirby-v2-scssphp
  * @return    CSS and HTML
- * @version   0.9.1
+ * @version   0.9.5
  */
+
+use Leafo\ScssPhp\Compiler;
 
 // Using realpath seems to work best in different situations.
 $root = realpath(__DIR__ . '/../..');
@@ -33,10 +35,10 @@ if (!file_exists($CSS) or $SCSSFileTime > $CSSFileTime ) {
 
 	// Activate library.
 	require_once $root . '/site/plugins/scssphp/scss.inc.php';
-	$parser = new scssc();
+	$parser = new Compiler();
 
 	// Setting compression provided by library.
-	$parser->setFormatter('scss_formatter_compressed');
+	$parser->setFormatter('Leafo\ScssPhp\Formatter\Compressed');
 
 	// Setting relative @import paths.
 	$importPath = $root . '/assets/scss';
