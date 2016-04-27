@@ -27,7 +27,7 @@ if ($template == 'default' or !file_exists($SCSS)) {
 }
 
 // Get file modification times. Used for checking if update is required and as version number for caching.
-$SCSSFileTime = filemtime($SCSS);
+$SCSSFileTime = getHighestFileTimestamp($root . '/assets/scss/');
 $CSSFileTime = filemtime($CSS);
 
 // Update CSS when needed.
@@ -56,6 +56,37 @@ if (!file_exists($CSS) or $SCSSFileTime > $CSSFileTime ) {
 
 	// Update CSS file.
 	file_put_contents($CSS, $buffer);
+}
+
+function getAllFiles($directory, $recursive = true) {
+	$result = array();
+	$handle =  opendir($directory);
+	while ($datei = readdir($handle))
+	{
+		if (($datei != '.') && ($datei != '..'))
+		{
+			$file = $directory.$datei;
+			if (is_dir($file)) {
+				if ($recursive) {
+					$result = array_merge($result, getAllFiles($file.'/'));
+				}
+			} else {
+				$result[] = $file;
+			}
+		}
+	}
+	closedir($handle);
+	return $result;
+}
+
+function getHighestFileTimestamp($directory, $recursive = true) {
+	$allFiles = getAllFiles($directory, $recursive);
+	$highestKnown = 0;
+	foreach ($allFiles as $val) {
+		$currentValue = filemtime($val);
+		if ($currentValue > $highestKnown) $highestKnown = $currentValue;
+	}
+	return $highestKnown;
 }
 
 ?>
