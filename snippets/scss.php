@@ -61,11 +61,11 @@ if (!file_exists($CSS) or $SCSSFileTime > $CSSFileTime ) {
 function getAllFiles($directory, $recursive = true) {
 	$result = array();
 	$handle =  opendir($directory);
-	while ($datei = readdir($handle))
+	while ($file = readdir($handle))
 	{
-		if (($datei != '.') && ($datei != '..'))
+		if (($file != '.') && ($file != '..'))
 		{
-			$file = $directory.$datei;
+			$file = $directory.$file;
 			if (is_dir($file)) {
 				if ($recursive) {
 					$result = array_merge($result, getAllFiles($file.'/'));
