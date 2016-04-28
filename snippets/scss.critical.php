@@ -5,7 +5,7 @@
  * @author    Bart van de Biezen <bart@bartvandebiezen.com>
  * @link      https://github.com/bartvandebiezen/kirby-v2-scssphp
  * @return    CSS
- * @version   0.9.5
+ * @version   1.0
  */
 
 use Leafo\ScssPhp\Compiler;
@@ -36,6 +36,17 @@ if ($template == 'default' or !file_exists($templateSCSS)) {
 
 // Set variable for checking if critical CSS needs to be compiled. I use a variable instead of combined if statement to reduce the number of times PHP needs to access different files.
 $needsCompiling = false;
+
+// For when the plugin should check if partials are changed. If any partial is newer than the main SCSS file, the main SCSS file will be 'touched'. This will trigger the compiler later on, on this server and also on another environment when synced. The main SCSS and not the critical SCSS file is used as reference to avoid conflicts with the normal scss snippet.
+if (c::get('scssNestedCheck')) {
+	$SCSSDirectory = $root . '/assets/scss/';
+	$files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($SCSSDirectory));
+	foreach ($files as $file) {
+		if (pathinfo($file, PATHINFO_EXTENSION) == "scss" && filemtime($file) > filemtime($templateSCSS)) {
+			touch ($templateSCSS);
+		}
+	}
+}
 
 // Compile critical SCSS when critical CSS doesn't exists.
 if (!file_exists($criticalCSS)) {

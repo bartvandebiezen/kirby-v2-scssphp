@@ -10,6 +10,7 @@ This is a preprocessor for SCSS files. Built using the [scssphp library](https:/
 4. Create a folder ‘scss’ inside Kirby’s assets folder.
 5. Create a file ‘default.scss’ and place it inside ‘assets/scss’.
 6. Make sure the folder ‘assets/css’ exists on your server.
+7. Add `c::set('scssNestedCheck', true);` to the config of your dev environment. [Read more about multi environment setup for Kirby](https://getkirby.com/blog/multi-environment-setup).
 
 ## Using SCSS plugin
 
@@ -19,7 +20,7 @@ It is possible to create different SCSSs for each Kirby template. Just use the n
 
 ## Critical SCSS (a.k.a. above the fold)
 
-If you would like to improve the performance of your website, you can use the 'scss.critical.php' in combination with the 'scss.php' snippet. This part of the plugin is optional and still experimental. Using critical CSS means inlining any CSS that is used to render content directly visible when you open a page. Before you start using critical CSS, my advice is to read more about this concept on [CSS Tricks](https://css-tricks.com/authoring-critical-fold-css/) or [ Google PageSpeed Insights](https://developers.google.com/speed/docs/insights/PrioritizeVisibleContent).
+If you would like to improve the performance of your website, you can use the 'scss.critical.php' in combination with the 'scss.php' snippet. This part of the plugin is optional and still experimental. Using critical CSS means inlining any CSS that is used to render content directly visible when you open a page. Before you start using critical CSS, my advice is to read more about this concept on [CSS Tricks](https://css-tricks.com/authoring-critical-fold-css/) or [Google PageSpeed Insights](https://developers.google.com/speed/docs/insights/PrioritizeVisibleContent).
 
 ### Installing Critical SCSS
 
@@ -35,7 +36,7 @@ Everything in 'default.critical.scss' will be compiled and placed in your HTML h
 
 This plugin does not (yet) detect which CSS should be placed in your critical CSS. Therefor you need to manually place or import SCSS that will affect everything that has a large chance to be directly visible 'above the fold' when loaded. Do not forget to include your SCSS utilities (e.g. mixins) and settings (i.e. global variables) in your critical SCSS file.
 
-The critical CSS will be updated after you update 'default.critical.scss' or upload it to another server. Updating the critical CSS after uploaded to another server is necessary because the absolute URLs in your critical CSS need to be updated.
+The critical CSS will also be updated after you upload it to another server. This is necessary because the absolute URLs in your critical CSS need to be updated.
 
 It is possible to create different critical SCSSs for each Kirby template. Just use the name of your template file for the critical SCSS file (e.g. 'article.critical.scss' for 'templates/article.php'), and place it in 'assets/scss'. If no critical SCSS file for a template can be found, 'default.critical.scss' will be used.
 
