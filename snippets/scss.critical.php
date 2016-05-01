@@ -4,8 +4,8 @@
  * Critical SCSS Snippet
  * @author    Bart van de Biezen <bart@bartvandebiezen.com>
  * @link      https://github.com/bartvandebiezen/kirby-v2-scssphp
- * @return    CSS
- * @version   1.0
+ * @return    CSS and HTML
+ * @version   1.0.1
  */
 
 use Leafo\ScssPhp\Compiler;
@@ -44,6 +44,8 @@ if (c::get('scssNestedCheck')) {
 	foreach ($files as $file) {
 		if (pathinfo($file, PATHINFO_EXTENSION) == "scss" && filemtime($file) > filemtime($templateSCSS)) {
 			touch ($templateSCSS);
+			clearstatcache();
+			break;
 		}
 	}
 }
