@@ -6,7 +6,7 @@ This is a preprocessor for SCSS files. Built using the [scssphp library](https:/
 
 1. Copy folder ‘scssphp’ inside ‘plugins’ to Kirby’s plugins folder.
 2. Copy file ‘scss.php’ inside ‘snippets’ to Kirby’s snippets folder.
-3. Call the SCSS snippet with <?php snippet('scss') ?> in your HTML head.
+3. Call the SCSS snippet with `<?php snippet('scss') ?>` in your HTML head.
 4. Create a folder ‘scss’ inside Kirby’s assets folder.
 5. Create a file ‘default.scss’ and place it inside ‘assets/scss’.
 6. Make sure the folder ‘assets/css’ exists on your server.
