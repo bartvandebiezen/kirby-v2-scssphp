@@ -19,6 +19,11 @@ $SCSS         = $root . '/assets/scss/' . $template . '.scss';
 $CSS          = $root . '/assets/css/'  . $template . '.css';
 $CSSKirbyPath = 'assets/css/' . $template . '.css';
 
+// If the CSS file doesn't exist create it so we can write to it
+if (!file_exists($CSS)) {
+  touch($CSS);
+}
+
 // Set default SCSS if there is no SCSS for current template. If template is default, skip check.
 if ($template == 'default' or !file_exists($SCSS)) {
 	$SCSS         = $root . '/assets/scss/default.scss';
