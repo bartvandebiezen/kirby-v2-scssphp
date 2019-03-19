@@ -1,5 +1,5 @@
 <?php
 
-c::set('scssNestedCheck', true);
-
-?>
+return [
+    'scssNestedCheck' => true
+];

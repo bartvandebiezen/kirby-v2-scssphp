@@ -25,7 +25,6 @@ if ($template == 'default' or !file_exists($SCSS)) {
 	$CSS          = $root . '/assets/css/default.css';
 	$CSSKirbyPath = 'assets/css/default.css';
 }
-
 // If the CSS file doesn't exist create it so we can write to it
 if (!file_exists($CSS)) {
 	if (!file_exists($root . '/assets/css/')) {
@@ -33,9 +32,8 @@ if (!file_exists($CSS)) {
 	}
 	touch($CSS,  mktime(0, 0, 0, date("m"), date("d"),  date("Y")-10));
 }
-
 // For when the plugin should check if partials are changed. If any partial is newer than the main SCSS file, the main SCSS file will be 'touched'. This will trigger the compiler later on, on this server and also on another environment when synced.
-if (c::get('scssNestedCheck')) {
+if ($kirby->option('scssNestedCheck')) {
 	$SCSSDirectory = $root . '/assets/scss/';
 	$files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($SCSSDirectory));
 	foreach ($files as $file) {
