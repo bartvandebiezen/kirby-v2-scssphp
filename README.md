@@ -10,7 +10,7 @@ This is a preprocessor for SCSS files. Built using the [scssphp library](https:/
 4. Create a folder ‘scss’ inside Kirby’s assets folder.
 5. Create a file ‘default.scss’ and place it inside ‘assets/scss’.
 6. Make sure the folder ‘assets/css’ exists on your server.
-7. Add `'scssNestedCheck' => true` to the config of your dev environment. [Read more about multi environment setup for Kirby](https://getkirby.com/docs/developer-guide/configuration/options#multi-environment-setup).
+7. Add `'scssNestedCheck' => true` to the config of your dev environment. [Read more about multi environment setup for Kirby](https://getkirby.com/docs/guide/configuration#multi-environment-setup).
 
 ## Using SCSS plugin
 
