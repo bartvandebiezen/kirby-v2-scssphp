@@ -38,7 +38,7 @@ if ($template == 'default' or !file_exists($templateSCSS)) {
 $needsCompiling = false;
 
 // For when the plugin should check if partials are changed. If any partial is newer than the main SCSS file, the main SCSS file will be 'touched'. This will trigger the compiler later on, on this server and also on another environment when synced. The main SCSS and not the critical SCSS file is used as reference to avoid conflicts with the normal scss snippet.
-if (c::get('scssNestedCheck')) {
+if ($kirby->option('scssNestedCheck')) {
 	$SCSSDirectory = $root . '/assets/scss/';
 	$files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($SCSSDirectory));
 	foreach ($files as $file) {
