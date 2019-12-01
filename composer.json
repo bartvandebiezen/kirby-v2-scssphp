@@ -1,0 +1,27 @@
+{
+    "name": "janstieler/kirby-v3-scssphp",
+    "description": "This is a preprocessor for SCSS files in Kirby3. Built using the scssphp library by Leaf Corcoran. This Kirby 3 plugin will automatically process SCSS files when changed. As an option, you can use this plugin to create 'critical CSS'.",
+    "keywords": ["scssphp","kirby3"],
+    "authors": [
+        {
+            "email": "bart@bartvandebiezen.com",
+            "name": "Bart van de Biezen",
+            "homepage": "http://www.bartvandebiezen.com",
+            "role": "Developer"
+        }
+        {
+            "email": "kontakt@janstieler.de",
+            "name": "Jan-Frederik Stieler",
+            "homepage": "https://www.janstieler.de",
+            "role": "Developer of Composer Update"
+        }
+    ],
+    "license": "GPL-3.0",
+    "support": {
+        "source": "https://github.com/bartvandebiezen/kirby-v2-scssphp"
+    },
+    "require": {
+        "php": ">=7.1.0",
+        "leafo/scssphp": "0.8.4"
+    }
+}
