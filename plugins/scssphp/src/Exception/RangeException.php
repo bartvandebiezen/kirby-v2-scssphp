@@ -9,14 +9,13 @@
  * @link http://scssphp.github.io/scssphp
  */
 
-namespace ScssPhp\ScssPhp;
+namespace ScssPhp\ScssPhp\Exception;
 
 /**
- * SCSSPHP version
+ * Range exception
  *
- * @author Leaf Corcoran <leafot@gmail.com>
+ * @author Anthon Pang <anthon.pang@gmail.com>
  */
-class Version
+class RangeException extends \Exception
 {
-    const VERSION = '1.1.1';
 }

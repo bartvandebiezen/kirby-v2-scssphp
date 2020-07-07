@@ -1,33 +1,42 @@
 {
-    "name": "leafo/scssphp",
+    "name": "scssphp/scssphp",
     "type": "library",
     "description": "scssphp is a compiler for SCSS written in PHP.",
     "keywords": ["css", "stylesheet", "scss", "sass", "less"],
-    "homepage": "http://leafo.github.io/scssphp/",
+    "homepage": "http://scssphp.github.io/scssphp/",
     "license": [
         "MIT"
     ],
     "authors": [
         {
-            "name": "Leaf Corcoran",
-            "email": "leafot@gmail.com",
-            "homepage": "http://leafo.net"
+            "name": "Anthon Pang",
+            "email": "apang@softwaredevelopment.ca",
+            "homepage": "https://github.com/robocoder"
+        },
+        {
+            "name": "Cédric Morin",
+            "email": "cedric@yterium.com",
+            "homepage": "https://github.com/Cerdic"
         }
     ],
     "autoload": {
-        "psr-4": { "Leafo\\ScssPhp\\": "src/" }
+        "psr-4": { "ScssPhp\\ScssPhp\\": "src/" }
     },
     "autoload-dev": {
-        "psr-4": { "Leafo\\ScssPhp\\Test\\": "tests/" }
+        "psr-4": { "ScssPhp\\ScssPhp\\Tests\\": "tests/" }
     },
     "require": {
-        "php": ">=5.4.0"
+        "php": ">=5.6.0",
+        "ext-json": "*",
+        "ext-ctype": "*"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "~2.5",
-        "phpunit/phpunit": "~3.7",
-        "kherge/box": "~2.5"
+        "squizlabs/php_codesniffer": "~3.5",
+        "phpunit/phpunit": "^5.7 || ^6.5 || ^7.5 || ^8.3",
+        "twbs/bootstrap": "~4.3",
+        "zurb/foundation": "~6.5"
     },
+    "minimum-stability": "dev",
     "bin": ["bin/pscss"],
     "archive": {
         "exclude": [
@@ -35,7 +44,6 @@
             "/.gitattributes",
             "/.gitignore",
             "/.travis.yml",
-            "/box.json.dist",
             "/phpunit.xml.dist",
             "/tests"
         ]

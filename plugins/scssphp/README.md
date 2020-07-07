@@ -1,12 +1,12 @@
 # scssphp
-### <http://leafo.github.io/scssphp>
+### <http://scssphp.github.io/scssphp>
 
-[![Build](https://travis-ci.org/leafo/scssphp.svg?branch=master)](http://travis-ci.org/leafo/scssphp)
-[![License](https://poser.pugx.org/leafo/scssphp/license.svg)](https://packagist.org/packages/leafo/scssphp)
+[![Build](https://travis-ci.org/scssphp/scssphp.svg?branch=master)](http://travis-ci.org/scssphp/scssphp)
+[![License](https://poser.pugx.org/scssphp/scssphp/license)](https://packagist.org/packages/scssphp/scssphp)
 
 `scssphp` is a compiler for SCSS written in PHP.
 
-Checkout the homepage, <http://leafo.github.io/scssphp>, for directions on how to use.
+Checkout the homepage, <http://scssphp.github.io/scssphp>, for directions on how to use.
 
 ## Running Tests
 
@@ -24,7 +24,6 @@ There are several tests in the `tests/` directory:
 * `InputTest.php` compiles every `.scss` file in the `tests/inputs` directory
   then compares to the respective `.css` file in the `tests/outputs` directory.
 * `ScssTest.php` extracts (ruby) `scss` tests from the `tests/scss_test.rb` file.
-* `ServerTest.php` contains functional tests for the `Server` class.
 
 When changing any of the tests in `tests/inputs`, the tests will most likely
 fail because the output has changed. Once you verify that the output is correct
