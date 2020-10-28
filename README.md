@@ -1,6 +1,6 @@
 # SCSSPHP Plugin for Kirby 3
 
-This is a preprocessor for SCSS files. Built using the [scssphp library](https://github.com/leafo/scssphp) by Leaf Corcoran. This Kirby 3 plugin will automatically process SCSS files when changed. As an option, you can use this plugin to create 'critical CSS'.
+This is a preprocessor for SCSS files. Built using the [scssphp library](https://github.com/scssphp/scssphp) by Leaf Corcoran. This Kirby 3 plugin will automatically process SCSS files when changed. As an option, you can use this plugin to create 'critical CSS'.
 
 ## Installing SCSS
 
