@@ -1,0 +1,18 @@
+# box files
+/*.phar
+/*.phar.sig
+/box.json
+
+# composer directories
+/bin/
+/src/vendors/
+
+# composer files
+/composer.lock
+
+# phpunit files
+/phpunit.xml
+
+# phpstorm files
+/.idea/
+/*.iml
