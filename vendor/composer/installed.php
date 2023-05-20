@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'd9c566624afc4be15c4ab6c0ff4c26698bec0e0b',
+    'reference' => '4dd69e591be199e63b2955309afb119f7de26dd9',
     'name' => 'janstieler/kirby-v3-scssphp',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'd9c566624afc4be15c4ab6c0ff4c26698bec0e0b',
+      'reference' => '4dd69e591be199e63b2955309afb119f7de26dd9',
     ),
     'scssphp/scssphp' => 
     array (
